@@ -1,7 +1,4 @@
-/*!
- * Copyright (c) 2024 PLANKA Software GmbH
- * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
- */
+
 
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
@@ -96,7 +93,7 @@ const Header = React.memo(() => {
     <div className={styles.wrapper}>
       {!project && (
         <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
-          PLANKA
+          Office
         </Link>
       )}
       <Menu inverted size="large" className={styles.menu}>

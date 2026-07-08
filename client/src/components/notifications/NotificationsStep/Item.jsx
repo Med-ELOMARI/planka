@@ -1,7 +1,4 @@
-/*!
- * Copyright (c) 2024 PLANKA Software GmbH
- * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
- */
+
 
 import truncate from 'lodash/truncate';
 import React, { useCallback, useMemo } from 'react';

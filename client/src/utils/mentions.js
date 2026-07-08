@@ -1,7 +1,4 @@
-/*!
- * Copyright (c) 2024 PLANKA Software GmbH
- * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
- */
+
 
 const USERNAME_CHAR_CLASS = 'a-zA-Z0-9._';
 const USERNAME_CHAR_REGEX = new RegExp(`^[${USERNAME_CHAR_CLASS}]$`);

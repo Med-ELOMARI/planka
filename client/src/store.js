@@ -1,7 +1,4 @@
-/*!
- * Copyright (c) 2024 PLANKA Software GmbH
- * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
- */
+
 
 import { applyMiddleware, legacy_createStore as createStore, compose as reduxCompose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
