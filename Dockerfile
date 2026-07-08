@@ -53,7 +53,7 @@ COPY --from=server --chown=node:node /app/server/dist .
 # Client build output
 COPY --from=client --chown=node:node /app/client/dist ./public
 
-RUN sed -i 's/\r$//' start.sh \
+RUN for f in *.sh healthcheck.js; do [ -f "$f" ] && sed -i 's/\r$//' "$f"; done \
   && chmod +x start.sh \
   && python3 -m venv .venv \
   && .venv/bin/pip3 install --upgrade pip \
