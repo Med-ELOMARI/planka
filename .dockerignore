@@ -16,8 +16,4 @@ server/views/index.ejs
 server/data/*
 !server/data/.gitkeep
 
-server/terms/*
-!server/terms/_template
-!server/terms/cloud
-
 client/dist

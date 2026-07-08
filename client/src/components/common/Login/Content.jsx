@@ -295,7 +295,7 @@ const Content = React.memo(() => {
                 </>
               )}
             </div>
-            <div className={styles.poweredBy}>
+            {/* <div className={styles.poweredBy}>
               <p className={styles.poweredByText}>
                 <Trans i18nKey="common.poweredByPlanka">
                   {'Powered by '}
@@ -304,7 +304,7 @@ const Content = React.memo(() => {
                   </a>
                 </Trans>
               </p>
-            </div>
+            </div> */}
           </div>
         </Grid.Column>
         <Grid.Column
