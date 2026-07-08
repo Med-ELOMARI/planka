@@ -9,15 +9,13 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U planka -d planka"]
+      test: [ "CMD-SHELL", "pg_isready -U planka -d planka" ]
       interval: 5s
       timeout: 5s
       retries: 10
 
   planka:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/med-elomari/atlasimex-office:latest
     restart: unless-stopped
     depends_on:
       postgres:
