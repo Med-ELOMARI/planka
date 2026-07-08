@@ -15,7 +15,9 @@ services:
       retries: 10
 
   planka:
-    image: ghcr.io/plankanban/planka:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
       postgres:
