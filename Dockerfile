@@ -53,7 +53,8 @@ COPY --from=server --chown=node:node /app/server/dist .
 # Client build output
 COPY --from=client --chown=node:node /app/client/dist ./public
 
-RUN chmod +x start.sh \
+RUN sed -i 's/\r$//' start.sh \
+  && chmod +x start.sh \
   && python3 -m venv .venv \
   && .venv/bin/pip3 install --upgrade pip \
   && .venv/bin/pip3 install -r requirements.txt --no-cache-dir \
@@ -68,4 +69,4 @@ EXPOSE 1337
 HEALTHCHECK --interval=10s --timeout=2s --start-period=15s \
   CMD node ./healthcheck.js
 
-CMD ["./start.sh"]
+CMD ["/bin/bash", "./start.sh"]
