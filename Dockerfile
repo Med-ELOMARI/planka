@@ -6,9 +6,11 @@ RUN apk -U upgrade \
 
 WORKDIR /app
 
-COPY server .
+COPY server ./server
 
-RUN  npm install \
+WORKDIR /app/server
+
+RUN npm install \
   && npm run build \
   && npm prune --production
 
@@ -17,7 +19,9 @@ FROM node:22 AS client
 
 WORKDIR /app
 
-COPY client .
+COPY client ./client
+
+WORKDIR /app/client
 
 RUN npm install npm --global \
   && npm install --omit=dev \
@@ -32,15 +36,26 @@ RUN apk -U upgrade \
 USER node
 WORKDIR /app
 
+# Root project files
 COPY --chown=node:node LICENSE.md .
-COPY --chown=node:node ["LICENSES/PLANKA Community License DE.md", "LICENSE_DE.md"]
+COPY --chown=node:node LICENSE_DE.md .
+COPY --chown=node:node .env.sample .
+COPY --chown=node:node requirements.txt .
+COPY --chown=node:node healthcheck.js .
+COPY --chown=node:node start.sh .
 
-COPY --from=server --chown=node:node /app/node_modules node_modules
-COPY --from=server --chown=node:node /app/dist .
+# License directory
+COPY --chown=node:node LICENSES ./LICENSES
 
-COPY --from=client --chown=node:node /app/dist public
+# Server build output
+COPY --from=server --chown=node:node /app/server/node_modules ./node_modules
+COPY --from=server --chown=node:node /app/server/dist .
 
-RUN python3 -m venv .venv \
+# Client build output
+COPY --from=client --chown=node:node /app/client/dist ./public
+
+RUN chmod +x start.sh \
+  && python3 -m venv .venv \
   && .venv/bin/pip3 install --upgrade pip \
   && .venv/bin/pip3 install -r requirements.txt --no-cache-dir \
   && mv .env.sample .env \
@@ -48,6 +63,7 @@ RUN python3 -m venv .venv \
   && npm config set update-notifier false
 
 VOLUME /app/data
+
 EXPOSE 1337
 
 HEALTHCHECK --interval=10s --timeout=2s --start-period=15s \
