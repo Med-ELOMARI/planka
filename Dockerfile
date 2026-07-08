@@ -38,11 +38,10 @@ WORKDIR /app
 
 # Root project files
 COPY --chown=node:node LICENSE.md .
-COPY --chown=node:node LICENSE_DE.md .
-COPY --chown=node:node .env.sample .
-COPY --chown=node:node requirements.txt .
-COPY --chown=node:node healthcheck.js .
-COPY --chown=node:node start.sh .
+COPY --chown=node:node server/.env.sample .
+COPY --chown=node:node server/requirements.txt .
+COPY --chown=node:node server/healthcheck.js .
+COPY --chown=node:node server/start.sh .
 
 # License directory
 COPY --chown=node:node LICENSES ./LICENSES
