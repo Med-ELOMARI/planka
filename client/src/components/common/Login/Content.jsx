@@ -204,12 +204,6 @@ const Content = React.memo(() => {
                 <img src={logo} alt="" className={styles.logo} />
               </div>
               <Header
-                as="h1"
-                textAlign="center"
-                content={bootstrap.instanceName || 'PLANKA'}
-                className={styles.formTitle}
-              />
-              <Header
                 as="h2"
                 textAlign="center"
                 content={t('common.logIn', {

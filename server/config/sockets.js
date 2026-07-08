@@ -59,11 +59,13 @@ module.exports.sockets = {
   //   return done();
   //
   // },
-  /**
-   *
-   * Whether to expose a 'GET /__getcookie' route that sets an HTTP-only
-   * session cookie.
-   *
-   */
-  // grant3rdPartyCookie: true,
+
+/**
+ *
+ * Whether to expose a 'GET /__getcookie' route that sets an HTTP-only
+ * session cookie.
+ *
+ */
+// grant3rdPartyCookie: true,
+
 };
