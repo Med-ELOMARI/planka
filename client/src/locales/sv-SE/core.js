@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Om appen',
-      aboutPlanka_title: 'Om PLANKA',
+      aboutPlanka_title: 'Om Office',
       accessToken: 'Åtkomsttoken',
       account: 'Konto',
       actions: 'Åtgärder',
@@ -280,7 +280,7 @@ export default {
       passwordIsSet: 'Lösenord är inställt',
       phone: 'Telefon',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA använder <1><0>Apprise</0></1> för att skicka aviseringar till över 100 populära tjänster.',
+        'använder <1><0>Apprise</0></1> för att skicka aviseringar till över 100 populära tjänster.',
       port: 'Port',
       preferences: 'Preferenser',
       pressPasteShortcutToAddAttachmentFromClipboard:

@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Về ứng dụng',
-      aboutPlanka_title: 'Về PLANKA',
+      aboutPlanka_title: 'Về Office',
       accessToken: 'Access token',
       account: 'Tài khoản',
       actions: 'Thao tác',
@@ -275,7 +275,7 @@ export default {
       passwordIsSet: 'Mật khẩu đã được thiết lập',
       phone: 'Điện thoại',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA sử dụng <1><0>Apprise</0></1> để gửi thông báo tới hơn 100 dịch vụ phổ biến.',
+        'sử dụng <1><0>Apprise</0></1> để gửi thông báo tới hơn 100 dịch vụ phổ biến.',
       port: 'Cổng',
       preferences: 'Tùy chọn',
       pressPasteShortcutToAddAttachmentFromClipboard:

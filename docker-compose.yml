@@ -22,7 +22,7 @@ services:
         condition: service_healthy
     environment:
       NODE_ENV: production
-      BASE_URL: https://planka.atlasimex.es
+      BASE_URL: ${BASE_URL}
       DATABASE_URL: postgres://planka:${POSTGRES_PASSWORD}@postgres/planka
       SECRET_KEY: ${SECRET_KEY}
       TRUST_PROXY: "1"

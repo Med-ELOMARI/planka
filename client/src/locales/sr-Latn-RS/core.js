@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'O aplikaciji',
-      aboutPlanka_title: 'O PLANKA',
+      aboutPlanka_title: 'O Office',
       accessToken: 'Token za pristup',
       account: 'Nalog',
       actions: 'Radnje',
@@ -274,7 +274,7 @@ export default {
       passwordIsSet: 'Lozinka je podešena',
       phone: 'Telefon',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA koristi <1><0>Apprise</0></1> za slanje obaveštenja na preko 100 popularnih servisa.',
+        'koristi <1><0>Apprise</0></1> za slanje obaveštenja na preko 100 popularnih servisa.',
       port: 'Port',
       preferences: 'Svojstva',
       pressPasteShortcutToAddAttachmentFromClipboard:

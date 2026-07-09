@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Σχετικά με την εφαρμογή',
-      aboutPlanka_title: 'Σχετικά με το PLANKA',
+      aboutPlanka_title: 'Σχετικά με το Office',
       accessToken: 'Διακριτικό πρόσβασης',
       account: 'Λογαριασμός',
       actions: 'Ενέργειες',

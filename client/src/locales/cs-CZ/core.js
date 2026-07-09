@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'O aplikaci',
-      aboutPlanka_title: 'O PLANKA',
+      aboutPlanka_title: 'O Office',
       accessToken: 'Přístupový token',
       account: 'Účet',
       actions: 'Akce',
@@ -271,7 +271,7 @@ export default {
       passwordIsSet: 'Heslo je nastaveno',
       phone: 'Telefon',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA používá <1><0>Apprise</0></1> k zasílání oznámení do více než 100 oblíbených služeb.',
+        ' používá <1><0>Apprise</0></1> k zasílání oznámení do více než 100 oblíbených služeb.',
       port: 'Port',
       preferences: 'Volby',
       pressPasteShortcutToAddAttachmentFromClipboard:

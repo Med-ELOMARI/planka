@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Про додаток',
-      aboutPlanka_title: 'Про PLANKA',
+      aboutPlanka_title: 'Про Office',
       accessToken: 'Токен доступу',
       account: 'Обліковий запис',
       actions: 'Дії',
@@ -275,7 +275,7 @@ export default {
       passwordIsSet: 'Пароль встановлено',
       phone: 'Телефон',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA використовує <1><0>Apprise</0></1> для надсилання сповіщень на понад 100 популярних сервісів.',
+        'використовує <1><0>Apprise</0></1> для надсилання сповіщень на понад 100 популярних сервісів.',
       port: 'Порт',
       preferences: 'Уподобання',
       pressPasteShortcutToAddAttachmentFromClipboard:

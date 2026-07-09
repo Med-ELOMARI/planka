@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Rakenduse kohta',
-      aboutPlanka_title: 'PLANKA kohta',
+      aboutPlanka_title: ' kohta',
       accessToken: 'Juurdepääsuluba',
       account: 'Konto',
       actions: 'Tegevused',
@@ -275,7 +275,7 @@ export default {
       passwordIsSet: 'Parool on määratud',
       phone: 'Telefon',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA kasutab <1><0>Apprise</0></1> teavitusteenuse, et teavitada üle 100 populaarset teenust.',
+        ' kasutab <1><0>Apprise</0></1> teavitusteenuse, et teavitada üle 100 populaarset teenust.',
       port: 'Port',
       preferences: 'Eelistused',
       pressPasteShortcutToAddAttachmentFromClipboard:

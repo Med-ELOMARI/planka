@@ -37,14 +37,9 @@ USER node
 WORKDIR /app
 
 # Root project files
-COPY --chown=node:node LICENSE.md .
-COPY --chown=node:node server/.env.sample .
 COPY --chown=node:node server/requirements.txt .
 COPY --chown=node:node server/healthcheck.js .
 COPY --chown=node:node server/start.sh .
-
-# License directory
-COPY --chown=node:node LICENSES ./LICENSES
 
 # Server build output
 COPY --from=server --chown=node:node /app/server/node_modules ./node_modules

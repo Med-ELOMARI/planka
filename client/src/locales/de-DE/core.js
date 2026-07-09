@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Über die App',
-      aboutPlanka_title: 'Über PLANKA',
+      aboutPlanka_title: 'Über Office',
       accessToken: 'Zugriffstoken',
       account: 'Konto',
       actions: 'Aktionen',
@@ -162,7 +162,7 @@ export default {
       customerPanel_title: 'Kundenpanel',
       dangerZone_title: 'Gefahrenbereich',
       discoverPlankaPro: '✨ Mehr Features für eure Boards: PLANKA Pro entdecken',
-      discoverPlankaPro_title: 'PLANKA Pro entdecken',
+      discoverPlankaPro_title: ' Pro entdecken',
       dismissProBannerFor30Days: 'Für 30 Tage schließen',
       upgradeTeamToPro_title: 'Team auf Pro upgraden',
       proFeatureCalendar: '✨ Kalenderansicht für eure Boards',
@@ -290,7 +290,7 @@ export default {
       passwordIsSet: 'Passwort ist gesetzt',
       phone: 'Telefon',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA verwendet <1><0>Apprise</0></1>, um Benachrichtigungen an über 100 beliebte Dienste zu senden.',
+        ' verwendet <1><0>Apprise</0></1>, um Benachrichtigungen an über 100 beliebte Dienste zu senden.',
       port: 'Port',
       preferences: 'Voreinstellungen',
       pressPasteShortcutToAddAttachmentFromClipboard:

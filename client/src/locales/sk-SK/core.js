@@ -270,7 +270,7 @@ export default {
       passwordIsSet: 'Heslo je nastavené',
       phone: 'Telefón',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA používa <1><0>Apprise</0></1> na posielanie oznámení do viac ako 100 populárnych služieb.',
+        'používa <1><0>Apprise</0></1> na posielanie oznámení do viac ako 100 populárnych služieb.',
       port: 'Port',
       preferences: 'Voľby',
       pressPasteShortcutToAddAttachmentFromClipboard:

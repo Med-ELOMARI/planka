@@ -24,7 +24,7 @@ const AboutModal = React.memo(() => {
 
   const panes = [
     {
-      menuItem: t('common.aboutPlanka', {
+      menuItem: t('common.aboutOffice', {
         context: 'title',
       }),
       render: () => <AboutPane />,

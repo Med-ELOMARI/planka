@@ -271,7 +271,7 @@ export default {
       passwordIsSet: 'Salasana on asetettu',
       phone: 'Puhelin',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA käyttää <1><0>Apprise</0></1> lähettääkseen ilmoituksia yli 100 suosittuun palveluun.',
+        ' käyttää <1><0>Apprise</0></1> lähettääkseen ilmoituksia yli 100 suosittuun palveluun.',
       port: 'Portti',
       preferences: 'Asetukset',
       pressPasteShortcutToAddAttachmentFromClipboard:

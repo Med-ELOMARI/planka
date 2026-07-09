@@ -21,7 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: '关于应用',
-      aboutPlanka_title: '关于 PLANKA',
+      aboutPlanka_title: '关于 Office',
       accessToken: '访问令牌',
       account: '账号',
       actions: '操作',
@@ -253,7 +253,7 @@ export default {
       passwordIsSet: '密码已设置',
       phone: '电话',
       plankaUsesAppriseToSendNotificationsToOver100PopularServices:
-        'PLANKA使用<1><0>Apprise</0></1>向100多个流行服务发送通知。',
+        '使用<1><0>Apprise</0></1>向100多个流行服务发送通知。',
       port: '端口',
       preferences: '偏好',
       pressPasteShortcutToAddAttachmentFromClipboard:

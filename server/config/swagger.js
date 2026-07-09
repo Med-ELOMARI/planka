@@ -5,7 +5,7 @@ module.exports = {
     openapi: '3.0.0',
     info: {
       version,
-      title: 'PLANKA API',
+      title: 'API',
       description:
         'API documentation for PLANKA - Real-Time Collaborative Kanban Board Application',
       license: {
