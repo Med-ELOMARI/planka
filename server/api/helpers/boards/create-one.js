@@ -3,6 +3,16 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
+const { POSITION_GAP } = require('../../../constants');
+
+const DEFAULT_LABELS = [
+  { name: 'Urgent', color: 'berry-red' },
+  { name: 'Need review', color: 'midnight-blue' },
+  { name: 'Cancelled', color: 'gun-metal' },
+  { name: 'Postponed', color: 'egg-yellow' },
+  { name: 'Optional', color: 'grey-stone' },
+];
+
 module.exports = {
   inputs: {
     values: {
@@ -86,6 +96,17 @@ module.exports = {
 
     if (inputs.import && inputs.import.type === Board.ImportTypes.TRELLO) {
       await sails.helpers.boards.importFromTrello(board, lists, inputs.import.board);
+    } else {
+      await Promise.all(
+        DEFAULT_LABELS.map((label, index) =>
+          Label.qm.createOne({
+            boardId: board.id,
+            position: POSITION_GAP * (index + 1),
+            name: label.name,
+            color: label.color,
+          }),
+        ),
+      );
     }
 
     scoper.board = board;
