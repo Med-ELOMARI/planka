@@ -1,13 +1,14 @@
 
 import debounce from 'lodash/debounce';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Icon, Label, Loader, Menu, Modal, Tab } from 'semantic-ui-react';
 import { push } from '../../../lib/redux-router';
 
 import api from '../../../api';
 import entryActions from '../../../entry-actions';
+import selectors from '../../../selectors';
 import { useClosableModal } from '../../../hooks';
 import Paths from '../../../constants/Paths';
 
@@ -19,6 +20,7 @@ const MIN_QUERY_LENGTH = 2;
 const GlobalSearchModal = React.memo(() => {
   const dispatch = useDispatch();
   const [t] = useTranslation();
+  const accessToken = useSelector(selectors.selectAccessToken);
 
   const [query, setQuery] = useState('');
   const [results, setResults] = useState(null);
@@ -53,7 +55,10 @@ const GlobalSearchModal = React.memo(() => {
 
         setIsLoading(true);
         try {
-          const result = await api.search({ q: q.trim() });
+          const result = await api.search(
+            { q: q.trim() },
+            { Authorization: `Bearer ${accessToken}` },
+          );
           if (activeSearchRef.current === searchId) {
             setResults(result);
           }
