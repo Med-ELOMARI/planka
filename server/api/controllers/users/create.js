@@ -105,7 +105,24 @@
  *         $ref: '#/components/responses/Conflict'
  */
 
+const fs = require('fs');
+const path = require('path');
+const escapeHtml = require('escape-html');
+
 const { isPassword } = require('../../../utils/validators');
+
+const WELCOME_TEMPLATE = fs.readFileSync(
+  path.join(__dirname, '..', '..', '..', 'email-templates', 'welcome.html'),
+  'utf8',
+);
+
+const renderWelcome = (vars) =>
+  Object.keys(vars).reduce(
+    (html, key) => html.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), () => vars[key]),
+    WELCOME_TEMPLATE,
+  );
+
+const toTitleCase = (str) => String(str).replace(/\b\w/g, (c) => c.toUpperCase());
 
 const Errors = {
   NOT_ENOUGH_RIGHTS: {
@@ -227,6 +244,32 @@ module.exports = {
       .intercept('emailAlreadyInUse', () => Errors.EMAIL_ALREADY_IN_USE)
       .intercept('usernameAlreadyInUse', () => Errors.USERNAME_ALREADY_IN_USE)
       .intercept('activeLimitReached', () => Errors.ACTIVE_LIMIT_REACHED);
+
+    // Fire-and-forget welcome email — does not block the response
+    (async () => {
+      try {
+        const { transporter } = await sails.helpers.utils.makeSmtpTransporter();
+        if (transporter) {
+          const html = renderWelcome({
+            recipientName: escapeHtml(toTitleCase(user.name)),
+            loginEmail: escapeHtml(user.email),
+            tempPassword: escapeHtml(values.password),
+            loginUrl: sails.config.custom.baseUrl,
+          });
+
+          await sails.helpers.utils.sendEmail.with({
+            transporter,
+            html,
+            to: user.email,
+            subject: 'Welcome to Atlasimex Office — Your account is ready',
+          });
+
+          transporter.close();
+        }
+      } catch (err) {
+        sails.log.error(`Failed to send welcome email to ${user.email}: ${err}`);
+      }
+    })();
 
     return {
       item: sails.helpers.users.presentOne(user, currentUser),
