@@ -22,13 +22,6 @@ jobs:
       - name: Set lowercase owner
         run: echo "OWNER_LC=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
-      - name: Extract version
-        id: version
-        run: |
-          TAG=${GITHUB_REF#refs/tags/}
-          echo "tag=$TAG" >> $GITHUB_ENV
-          echo "major=$(echo $TAG | cut -d. -f1)" >> $GITHUB_ENV
-
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -36,13 +29,23 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate tags
+        id: tags
+        run: |
+          BASE="ghcr.io/${{ env.OWNER_LC }}/atlasimex-office"
+          TAGS="$BASE:latest"
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VER=${GITHUB_REF#refs/tags/}
+            TAGS="$TAGS,$BASE:${VER},$BASE:$(echo $VER | cut -d. -f1)"
+          else
+            TAGS="$TAGS,$BASE:${{ github.sha }}"
+          fi
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: |
-            ghcr.io/${{ env.OWNER_LC }}/atlasimex-office:latest
-            ghcr.io/${{ env.OWNER_LC }}/atlasimex-office:${{ env.tag }}
-            ghcr.io/${{ env.OWNER_LC }}/atlasimex-office:${{ env.major }}
+          tags: ${{ steps.tags.outputs.tags }}
