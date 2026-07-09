@@ -141,6 +141,7 @@ module.exports = {
     },
     templateBoardId: {
       ...idInput,
+      allowNull: true,
     },
     requestId: {
       type: 'string',

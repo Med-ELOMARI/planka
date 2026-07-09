@@ -24,6 +24,7 @@ module.exports = {
     },
     templateBoardId: {
       type: 'string',
+      allowNull: true,
     },
     actorUser: {
       type: 'ref',
