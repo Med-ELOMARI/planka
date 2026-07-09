@@ -8,7 +8,7 @@ import { FilePicker, Popup } from '../../../lib/custom-ui';
 
 import styles from './ImportStep.module.scss';
 
-const ImportStep = React.memo(({ onSelect, onBack }) => {
+const ImportStep = React.memo(({ onSelect, onBack, onBoardTemplate }) => {
   const [t] = useTranslation();
 
   const handleFileSelect = useCallback(
@@ -34,6 +34,13 @@ const ImportStep = React.memo(({ onSelect, onBack }) => {
         <FilePicker accept=".json" onSelect={(file) => handleFileSelect('trello', file)}>
           <Button fluid content={t('common.fromTrello')} icon="trello" className={styles.button} />
         </FilePicker>
+        <Button
+          fluid
+          icon="columns"
+          content={t('common.fromBoard')}
+          className={styles.button}
+          onClick={onBoardTemplate}
+        />
       </Popup.Content>
     </>
   );
@@ -42,6 +49,7 @@ const ImportStep = React.memo(({ onSelect, onBack }) => {
 ImportStep.propTypes = {
   onSelect: PropTypes.func.isRequired,
   onBack: PropTypes.func.isRequired,
+  onBoardTemplate: PropTypes.func.isRequired,
 };
 
 export default ImportStep;

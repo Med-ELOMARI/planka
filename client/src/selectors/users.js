@@ -185,6 +185,29 @@ export const selectFavoriteProjectIdsForCurrentUser = createSelector(
   },
 );
 
+export const selectProjectsToBoardsForCurrentUser = createSelector(
+  orm,
+  (state) => selectCurrentUserId(state),
+  ({ User }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const userModel = User.withId(id);
+
+    if (!userModel) {
+      return userModel;
+    }
+
+    return userModel.getMembershipProjectsModelArray().map((projectModel) => ({
+      ...projectModel.ref,
+      boards: projectModel
+        .getBoardsModelArrayForUserWithId(id)
+        .map((boardModel) => boardModel.ref),
+    }));
+  },
+);
+
 export const selectProjectsToBoardsWithEditorRightsForCurrentUser = createSelector(
   orm,
   (state) => selectCurrentUserId(state),
@@ -351,6 +374,7 @@ export default {
   selectFilteredProjectIdsForCurrentUser,
   selectFilteredProjctIdsByGroupForCurrentUser,
   selectFavoriteProjectIdsForCurrentUser,
+  selectProjectsToBoardsForCurrentUser,
   selectProjectsToBoardsWithEditorRightsForCurrentUser,
   selectProjectsToListsWithEditorRightsForCurrentUser,
   selectBoardIdsForCurrentUser,

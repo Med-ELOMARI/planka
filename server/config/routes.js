@@ -105,6 +105,8 @@ const protectedStaticDirServer = (prefix, getPathSegment) => (req, res, next) =>
 module.exports.routes = {
   'GET /api/bootstrap': 'bootstrap/show',
 
+  'GET /api/search': 'search/index',
+
   'GET /api/terms': 'terms/show',
 
   'GET /api/config': 'config/show',

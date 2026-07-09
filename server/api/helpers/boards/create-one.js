@@ -22,6 +22,9 @@ module.exports = {
     import: {
       type: 'json',
     },
+    templateBoardId: {
+      type: 'string',
+    },
     actorUser: {
       type: 'ref',
       required: true,
@@ -107,6 +110,25 @@ module.exports = {
           }),
         ),
       );
+
+      if (inputs.templateBoardId) {
+        const templateLists = await sails.helpers.boards.getKanbanListsById(
+          inputs.templateBoardId,
+        );
+        const sortedTemplateLists = _.sortBy(templateLists, 'position');
+
+        await Promise.all(
+          sortedTemplateLists.map((templateList, index) =>
+            List.qm.createOne({
+              boardId: board.id,
+              type: templateList.type,
+              name: templateList.name || null,
+              color: templateList.color || null,
+              position: POSITION_GAP * (index + 1),
+            }),
+          ),
+        );
+      }
     }
 
     scoper.board = board;

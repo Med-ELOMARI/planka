@@ -86,6 +86,10 @@ const Header = React.memo(() => {
     dispatch(entryActions.openProjectSettingsModal());
   }, [canEditProject, dispatch]);
 
+  const handleSearchClick = useCallback(() => {
+    dispatch(entryActions.openGlobalSearchModal());
+  }, [dispatch]);
+
   const NotificationsPopup = usePopup(NotificationsStep, POPUP_PROPS);
   const UserActionsPopup = usePopup(UserActionsStep, POPUP_PROPS);
 
@@ -141,6 +145,12 @@ const Header = React.memo(() => {
               />
             </Menu.Item>
           )}
+          <Menu.Item
+            className={classNames(styles.item, styles.itemHoverable)}
+            onClick={handleSearchClick}
+          >
+            <Icon fitted name="search" />
+          </Menu.Item>
           <NotificationsPopup>
             <Menu.Item className={classNames(styles.item, styles.itemHoverable)}>
               <Icon fitted name="bell" />

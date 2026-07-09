@@ -12,11 +12,13 @@ import { Input, Popup } from '../../../lib/custom-ui';
 import entryActions from '../../../entry-actions';
 import { useForm, useNestedRef, useSteps } from '../../../hooks';
 import ImportStep from './ImportStep';
+import ColumnsTemplateStep from './ColumnsTemplateStep';
 
 import styles from './AddBoardStep.module.scss';
 
 const StepTypes = {
   IMPORT: 'IMPORT',
+  COLUMNS_TEMPLATE: 'COLUMNS_TEMPLATE',
 };
 
 const AddBoardStep = React.memo(({ onClose }) => {
@@ -26,6 +28,8 @@ const AddBoardStep = React.memo(({ onClose }) => {
   const [data, handleFieldChange, setData] = useForm({
     name: '',
     import: null,
+    templateBoardId: null,
+    templateBoardName: null,
   });
 
   const [step, openStep, handleBack] = useSteps();
@@ -44,7 +48,10 @@ const AddBoardStep = React.memo(({ onClose }) => {
       return;
     }
 
-    dispatch(entryActions.createBoardInCurrentProject(cleanData));
+    // Strip display-only field before dispatching
+    // eslint-disable-next-line no-unused-vars
+    const { templateBoardName: _, ...submitData } = cleanData;
+    dispatch(entryActions.createBoardInCurrentProject(submitData));
     onClose();
   }, [onClose, dispatch, data, nameFieldRef]);
 
@@ -53,9 +60,25 @@ const AddBoardStep = React.memo(({ onClose }) => {
       setData((prevData) => ({
         ...prevData,
         import: nextImport,
+        templateBoardId: null,
+        templateBoardName: null,
       }));
     },
     [setData],
+  );
+
+  const handleTemplateSelect = useCallback(
+    (board) => {
+      setData((prevData) => ({
+        ...prevData,
+        templateBoardId: board.id,
+        templateBoardName: board.name,
+        import: null,
+      }));
+      handleBack();
+      focusNameField();
+    },
+    [setData, handleBack, focusNameField],
   );
 
   const handleImportBack = useCallback(() => {
@@ -63,8 +86,17 @@ const AddBoardStep = React.memo(({ onClose }) => {
     focusNameField();
   }, [handleBack, focusNameField]);
 
+  const handleTemplateBack = useCallback(() => {
+    handleBack();
+    focusNameField();
+  }, [handleBack, focusNameField]);
+
   const handleImportClick = useCallback(() => {
     openStep(StepTypes.IMPORT);
+  }, [openStep]);
+
+  const handleBoardTemplateClick = useCallback(() => {
+    openStep(StepTypes.COLUMNS_TEMPLATE);
   }, [openStep]);
 
   useEffect(() => {
@@ -78,7 +110,17 @@ const AddBoardStep = React.memo(({ onClose }) => {
   }, [focusNameFieldState]);
 
   if (step && step.type === StepTypes.IMPORT) {
-    return <ImportStep onSelect={handleImportSelect} onBack={handleImportBack} />;
+    return (
+      <ImportStep
+        onSelect={handleImportSelect}
+        onBack={handleImportBack}
+        onBoardTemplate={handleBoardTemplateClick}
+      />
+    );
+  }
+
+  if (step && step.type === StepTypes.COLUMNS_TEMPLATE) {
+    return <ColumnsTemplateStep onSelect={handleTemplateSelect} onBack={handleTemplateBack} />;
   }
 
   return (
@@ -108,10 +150,18 @@ const AddBoardStep = React.memo(({ onClose }) => {
               onClick={handleImportClick}
             >
               <Icon
-                name={data.import ? data.import.type : 'arrow down'}
+                name={
+                  // eslint-disable-next-line no-nested-ternary
+                  data.import ? data.import.type : data.templateBoardId ? 'columns' : 'arrow down'
+                }
                 className={styles.importButtonIcon}
               />
-              {data.import ? data.import.file.name : t('action.import')}
+              {
+                // eslint-disable-next-line no-nested-ternary
+                data.import
+                  ? data.import.file.name
+                  : data.templateBoardName || t('action.import')
+              }
             </Button>
           </div>
         </Form>

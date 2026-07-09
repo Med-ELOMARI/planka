@@ -58,6 +58,13 @@ const openBoardActivitiesModal = () => ({
   },
 });
 
+const openGlobalSearchModal = () => ({
+  type: EntryActionTypes.MODAL_OPEN,
+  payload: {
+    type: ModalTypes.GLOBAL_SEARCH,
+  },
+});
+
 const closeModal = () => ({
   type: EntryActionTypes.MODAL_CLOSE,
   payload: {},
@@ -71,5 +78,6 @@ export default {
   openProjectSettingsModal,
   openBoardSettingsModal,
   openBoardActivitiesModal,
+  openGlobalSearchModal,
   closeModal,
 };

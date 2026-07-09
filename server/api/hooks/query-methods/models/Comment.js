@@ -3,7 +3,13 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
+const buildSearchParts = require('../../../../utils/build-query-parts');
+const { makeRowToModelTransformer } = require('../helpers');
+
 const LIMIT = 50;
+const GLOBAL_SEARCH_LIMIT = 10;
+
+const transformRowToModel = makeRowToModelTransformer(Comment);
 
 const defaultFind = (criteria, { limit } = {}) =>
   Comment.find(criteria).sort('id DESC').limit(limit);
@@ -113,11 +119,36 @@ const deleteOne = (criteria) =>
     return comment;
   });
 
+const searchGlobally = async (search, boardIds) => {
+  if (boardIds.length === 0) return [];
+
+  const searchParts = buildSearchParts(search);
+  if (searchParts.length === 0) return [];
+
+  const queryValues = [];
+
+  const inValues = boardIds.map((boardId) => {
+    queryValues.push(boardId);
+    return `$${queryValues.length}`;
+  });
+
+  const ilikeValues = searchParts.map((searchPart) => {
+    queryValues.push(searchPart);
+    return `'%' || $${queryValues.length} || '%'`;
+  });
+
+  const query = `SELECT comment.* FROM comment JOIN card ON comment.card_id = card.id WHERE card.board_id IN (${inValues.join(', ')}) AND (comment.text ILIKE ALL(ARRAY[${ilikeValues.join(', ')}])) ORDER BY comment.created_at DESC LIMIT ${GLOBAL_SEARCH_LIMIT}`;
+
+  const queryResult = await sails.sendNativeQuery(query, queryValues);
+  return queryResult.rows.map(transformRowToModel);
+};
+
 module.exports = {
   createOne,
   getByIds,
   getByCardId,
   getOneById,
+  searchGlobally,
   update,
   updateOne,
   deleteOne,

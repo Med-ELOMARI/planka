@@ -139,6 +139,9 @@ module.exports = {
       type: 'string',
       isIn: Object.values(Board.ImportTypes),
     },
+    templateBoardId: {
+      ...idInput,
+    },
     requestId: {
       type: 'string',
       isNotEmptyString: true,
@@ -205,12 +208,31 @@ module.exports = {
 
     const values = _.pick(inputs, ['position', 'name']);
 
+    let { templateBoardId } = inputs;
+    if (templateBoardId) {
+      const templateBoard = await Board.qm.getOneById(templateBoardId);
+
+      if (!templateBoard) {
+        templateBoardId = null;
+      } else {
+        const canAccessTemplate =
+          currentUser.role === User.Roles.ADMIN ||
+          (await sails.helpers.users.isProjectManager(currentUser.id, templateBoard.projectId)) ||
+          (await sails.helpers.users.isBoardMember(currentUser.id, templateBoardId));
+
+        if (!canAccessTemplate) {
+          templateBoardId = null;
+        }
+      }
+    }
+
     const { board, boardMembership } = await sails.helpers.boards.createOne.with({
       values: {
         ...values,
         project,
       },
       import: boardImport,
+      templateBoardId: templateBoardId || null,
       actorUser: currentUser,
       requestId: inputs.requestId,
       request: this.req,

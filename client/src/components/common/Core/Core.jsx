@@ -17,6 +17,7 @@ import AboutModal from '../AboutModal';
 import UserSettingsModal from '../../users/UserSettingsModal';
 import ProjectBackground from '../../projects/ProjectBackground';
 import AddProjectModal from '../../projects/AddProjectModal';
+import GlobalSearchModal from '../GlobalSearchModal';
 
 const Core = React.memo(() => {
   const isInitializing = useSelector(selectors.selectIsInitializing);
@@ -70,6 +71,10 @@ const Core = React.memo(() => {
         break;
       case ModalTypes.ADD_PROJECT:
         modalNode = <AddProjectModal />;
+
+        break;
+      case ModalTypes.GLOBAL_SEARCH:
+        modalNode = <GlobalSearchModal />;
 
         break;
       default:

@@ -163,6 +163,32 @@ const getByListIds = async (listIds, { sort = ['position', 'id'] } = {}) =>
     { sort },
   );
 
+const GLOBAL_SEARCH_LIMIT = 10;
+
+const searchGlobally = async (search, boardIds) => {
+  if (boardIds.length === 0) return [];
+
+  const searchParts = buildSearchParts(search);
+  if (searchParts.length === 0) return [];
+
+  const queryValues = [];
+
+  const inValues = boardIds.map((boardId) => {
+    queryValues.push(boardId);
+    return `$${queryValues.length}`;
+  });
+
+  const ilikeValues = searchParts.map((searchPart) => {
+    queryValues.push(searchPart);
+    return `'%' || $${queryValues.length} || '%'`;
+  });
+
+  const query = `SELECT card.* FROM card WHERE card.board_id IN (${inValues.join(', ')}) AND ((card.name ILIKE ALL(ARRAY[${ilikeValues.join(', ')}])) OR (card.description ILIKE ALL(ARRAY[${ilikeValues.join(', ')}]))) ORDER BY card.updated_at DESC LIMIT ${GLOBAL_SEARCH_LIMIT}`;
+
+  const queryResult = await sails.sendNativeQuery(query, queryValues);
+  return queryResult.rows.map(transformRowToModel);
+};
+
 const getOneById = (id, { listId } = {}) => {
   const criteria = {
     id,
@@ -240,6 +266,7 @@ module.exports = {
   getByEndlessListId,
   getByListIds,
   getOneById,
+  searchGlobally,
   update,
   updateOne,
   deleteOne,
