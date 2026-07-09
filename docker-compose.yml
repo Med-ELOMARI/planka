@@ -40,7 +40,7 @@ services:
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       SMTP_FROM: ${SMTP_FROM}
       # SMTP_TLS: ${SMTP_TLS}
-      SMTP_SECURE: "${SMTP_SECURE}"
+      SMTP_SECURE: "false"
 
 volumes:
   postgres_data:
