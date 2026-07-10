@@ -55,10 +55,12 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true,
+    host: true,
+    open: false,
     proxy: {
       '/api': PROXY_TARGET,
       '/socket.io': { target: PROXY_TARGET, ws: true },
+      '/engine.io': { target: PROXY_TARGET, ws: true },
     },
   },
   build: {

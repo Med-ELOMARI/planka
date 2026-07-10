@@ -7,6 +7,7 @@ import Config from '../constants/Config';
 
 const io = sailsIOClient(socketIOClient);
 
+io.sails.url = import.meta.env.VITE_SERVER_URL || 'http://localhost:1337';
 io.sails.path = `${Config.BASE_PATH}/socket.io`;
 io.sails.autoConnect = false;
 io.sails.reconnection = true;
