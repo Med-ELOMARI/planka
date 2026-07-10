@@ -19,9 +19,13 @@ const Item = React.memo(({ id }) => {
   const selectUserById = useMemo(() => selectors.makeSelectUserById(), []);
 
   const activity = useSelector((state) => selectActivityById(state, id));
-  const user = useSelector((state) => selectUserById(state, activity.userId));
+  const user = useSelector((state) => selectUserById(state, activity?.userId));
 
   const [t] = useTranslation();
+
+  if (!activity || !user) {
+    return null;
+  }
 
   const userName = isUserStatic(user)
     ? t(`common.${user.name}`, {

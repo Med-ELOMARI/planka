@@ -218,6 +218,11 @@ exports.seed = async (knex) => {
         const li = ci % listIds.length;
         const creatorId = boardUserIds[ci % boardUserIds.length];
 
+        const dueDate =
+          (ci + b + p) % 3 === 0
+            ? new Date(Date.now() + (ci + 1) * 86400000).toISOString()
+            : undefined;
+
         const [{ id: cardId }] = await knex('card')
           .insert(
             {
@@ -230,6 +235,7 @@ exports.seed = async (knex) => {
               description: `Description for: ${CARD_NAMES[cardIndex]}`,
               commentsTotal: numComments,
               isClosed: false,
+              ...(dueDate && { dueDate }),
               createdAt: ts,
               updatedAt: ts,
             },
@@ -252,12 +258,17 @@ exports.seed = async (knex) => {
           });
         }
 
+        const listRef = LIST_TEMPLATES.slice(0, numLists)[li];
+
         await knex('action').insert({
           boardId,
           cardId,
           userId: creatorId,
           type: 'createCard',
-          data: { card: { name: CARD_NAMES[cardIndex], type: 'project' } },
+          data: {
+            card: { name: CARD_NAMES[cardIndex] },
+            list: { id: listIds[li], type: 'active', name: listRef.name },
+          },
           createdAt: ts,
           updatedAt: ts,
         });
