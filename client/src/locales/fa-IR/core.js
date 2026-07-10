@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'درباره برنامه',
+      aboutOffice_title: 'درباره',
       aboutPlanka_title: 'درباره Office',
       accessToken: 'رمز دسترسی',
       account: 'حساب کاربری',

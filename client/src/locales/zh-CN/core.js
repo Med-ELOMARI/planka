@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: '关于应用',
+      aboutOffice_title: '关于',
       aboutPlanka_title: '关于 Office',
       accessToken: '访问令牌',
       account: '账号',

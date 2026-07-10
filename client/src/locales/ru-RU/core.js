@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'О приложении',
+      aboutOffice_title: 'О',
       aboutPlanka_title: 'О Office',
       accessToken: 'Токен доступа',
       account: 'Учетная запись',

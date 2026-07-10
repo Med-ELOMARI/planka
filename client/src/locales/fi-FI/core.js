@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Tietoa sovelluksesta',
+      aboutOffice_title: 'Tietoa',
       aboutPlanka_title: 'Tietoa PLANKAsta',
       accessToken: 'Käyttöoikeustunnus',
       account: 'Tili',

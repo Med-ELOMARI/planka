@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'О апликацији',
+      aboutOffice_title: 'О',
       aboutPlanka_title: 'O Office',
       accessToken: 'Токен за приступ',
       account: 'Налог',

@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'O aplikácii',
+      aboutOffice_title: 'O',
       aboutPlanka_title: 'O Planke',
       accessToken: 'Prístupový token',
       account: 'Účet',

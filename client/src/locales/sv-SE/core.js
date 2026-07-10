@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Om appen',
+      aboutOffice_title: 'Om',
       aboutPlanka_title: 'Om Office',
       accessToken: 'Åtkomsttoken',
       account: 'Konto',

@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Uygulama hakkında',
+      aboutOffice_title: 'Hakkında',
       aboutPlanka_title: 'Hakkında',
       accessToken: 'Erişim jetonu',
       account: 'Hesap',

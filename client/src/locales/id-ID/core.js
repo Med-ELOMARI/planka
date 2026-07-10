@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Tentang aplikasi',
+      aboutOffice_title: 'Tentang',
       aboutPlanka_title: 'Tentang Office',
       accessToken: 'Token akses',
       account: 'Akun',

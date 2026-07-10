@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Ilova haqida',
+      aboutOffice_title: 'Haqida',
       aboutPlanka_title: 'haqida',
       accessToken: 'Kirish tokeni',
       account: 'Profil',

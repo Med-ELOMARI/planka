@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Az alkalmazásról',
+      aboutOffice_title: 'Névjegy',
       aboutPlanka_title: '-ról',
       accessToken: 'Hozzáférési token',
       account: 'Fiók',

@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: "Informazioni sull'app",
+      aboutOffice_title: 'Informazioni',
       aboutPlanka_title: 'Informazioni su Office',
       accessToken: 'Token di accesso',
       account: 'Account',

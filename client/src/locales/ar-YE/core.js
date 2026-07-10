@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'حول التطبيق',
+      aboutOffice_title: 'حول',
       aboutPlanka_title: 'حول Office',
       accessToken: 'رمز الوصول',
       account: 'الحساب',

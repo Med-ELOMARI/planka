@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Về ứng dụng',
+      aboutOffice_title: 'Về',
       aboutPlanka_title: 'Về Office',
       accessToken: 'Access token',
       account: 'Tài khoản',

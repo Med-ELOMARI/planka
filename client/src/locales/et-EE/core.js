@@ -21,6 +21,7 @@ export default {
   translation: {
     common: {
       aboutApp_title: 'Rakenduse kohta',
+      aboutOffice_title: 'Teave',
       aboutPlanka_title: ' kohta',
       accessToken: 'Juurdepääsuluba',
       account: 'Konto',
