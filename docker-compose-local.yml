@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: on-failure
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=planka
+      - POSTGRES_DB=planka
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U planka -d planka && psql -U planka -d planka -c 'SELECT 1'" ]
+      interval: 3s
+      timeout: 5s
+      retries: 15
+      start_period: 10s
+
+  planka:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      BASE_URL: http://localhost:1337
+      DATABASE_URL: postgres://planka:${POSTGRES_PASSWORD}@postgres/planka
+      SECRET_KEY: ${SECRET_KEY}
+      TRUST_PROXY: "1"
+      # Admin user
+      DEFAULT_ADMIN_EMAIL: demo@demo.demo
+      DEFAULT_ADMIN_PASSWORD: demo
+      DEFAULT_ADMIN_NAME: Demo Demo
+      DEFAULT_ADMIN_USERNAME: demo
+      # SMTP
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      SMTP_SECURE: "false"
+      SMTP_TLS_REJECT_UNAUTHORIZED: "false"
+      SMTP_FROM: noreply@atlasimex.local
+
+volumes:
+  postgres_data:
