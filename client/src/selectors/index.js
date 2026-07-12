@@ -26,6 +26,7 @@ import comments from './comments';
 import activities from './activities';
 import notifications from './notifications';
 import notificationServices from './notification-services';
+import calendar from './calendar';
 
 export default {
   ...router,
@@ -54,4 +55,5 @@ export default {
   ...activities,
   ...notifications,
   ...notificationServices,
+  ...calendar,
 };

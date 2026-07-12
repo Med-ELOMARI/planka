@@ -92,7 +92,7 @@ const Static = React.memo(() => {
   } else {
     wrapperClassNames = [
       isFavoritesActive ? styles.wrapperBoardWithFavorites : styles.wrapperBoard,
-      [BoardViews.GRID, BoardViews.LIST].includes(board.view) && styles.wrapperVertical,
+      [BoardViews.GRID, BoardViews.LIST, BoardViews.CALENDAR].includes(board.view) && styles.wrapperVertical,
       styles.wrapperFlex,
     ];
 

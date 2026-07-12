@@ -16,6 +16,7 @@ const DESCRIPTION_BY_VIEW = {
   [BoardViews.KANBAN]: 'common.visualTaskManagementWithLists',
   [BoardViews.GRID]: 'common.dynamicAndUnevenlySpacedLayout',
   [BoardViews.LIST]: 'common.sequentialDisplayOfCards',
+  [BoardViews.CALENDAR]: 'common.calendarViewDescription',
 };
 
 const DefaultView = React.memo(() => {
@@ -40,7 +41,7 @@ const DefaultView = React.memo(() => {
 
   return (
     <Menu secondary vertical className={styles.menu}>
-      {[BoardViews.KANBAN, BoardViews.GRID, BoardViews.LIST].map((view) => (
+      {[BoardViews.KANBAN, BoardViews.GRID, BoardViews.LIST, BoardViews.CALENDAR].map((view) => (
         <Menu.Item
           key={view}
           value={view}

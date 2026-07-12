@@ -106,6 +106,8 @@ export default {
       boardUser: 'Board user',
       byCreationTime: 'By creation time',
       byDefault: 'By default',
+      calendar: 'Calendar',
+      calendarViewDescription: 'Timeline view of cards with creation and due dates.',
       byDueDate: 'By due date',
       canBeInvitedToWorkInBoards: 'Can be invited to work in boards.',
       canComment: 'Can comment',

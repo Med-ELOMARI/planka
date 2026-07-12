@@ -41,19 +41,7 @@ const GroupedProjectsView = React.memo(() => {
 
   return (
     <>
-      {[ProjectGroups.MY_OWN, ProjectGroups.TEAM].map(
-        (group) =>
-          (projectIdsByGroup[group].length > 0 || canAdd) && (
-            <Projects
-              key={group}
-              ids={projectIdsByGroup[group]}
-              title={TITLE_BY_GROUP[group]}
-              titleIcon={ProjectGroupIcons[group]}
-              onAdd={() => handleAdd(DEFAULT_TYPE_BY_GROUP[group])}
-            />
-          ),
-      )}
-      {[ProjectGroups.SHARED_WITH_ME, ProjectGroups.OTHERS].map(
+      {[ProjectGroups.OTHERS, ProjectGroups.SHARED_WITH_ME].map(
         (group) =>
           projectIdsByGroup[group].length > 0 && (
             <Projects
@@ -62,6 +50,18 @@ const GroupedProjectsView = React.memo(() => {
               ids={projectIdsByGroup[group]}
               title={TITLE_BY_GROUP[group]}
               titleIcon={ProjectGroupIcons[group]}
+            />
+          ),
+      )}
+      {[ProjectGroups.TEAM, ProjectGroups.MY_OWN].map(
+        (group) =>
+          (projectIdsByGroup[group].length > 0 || canAdd) && (
+            <Projects
+              key={group}
+              ids={projectIdsByGroup[group]}
+              title={TITLE_BY_GROUP[group]}
+              titleIcon={ProjectGroupIcons[group]}
+              onAdd={() => handleAdd(DEFAULT_TYPE_BY_GROUP[group])}
             />
           ),
       )}

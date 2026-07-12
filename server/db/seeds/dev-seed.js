@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 
 const POSITION_STEP = 65536;
 
+DEFAULT_PASSWORD = 'password123';
+
 const USERS = [
   { email: 'admin@example.com', role: 'admin', name: 'Admin User', username: 'admin' },
   { email: 'owner@example.com', role: 'projectOwner', name: 'Project Owner', username: 'owner' },
@@ -10,9 +12,11 @@ const USERS = [
   { email: 'user3@example.com', role: 'boardUser', name: 'Charlie Tester', username: 'charlie' },
 ];
 
+
 const LIST_TEMPLATES = [
   { name: 'To Do', color: 'pumpkin-orange' },
   { name: 'In Progress', color: 'lagoon-blue' },
+  { name: 'In Review', color: 'lagoon-blue' },
   { name: 'Done', color: 'bright-moss' },
 ];
 
@@ -78,7 +82,7 @@ exports.seed = async (knex) => {
   );
   const numCards = parseInt(process.env.SEED_CARDS_PER_LIST, 10) || 3;
   const numComments = parseInt(process.env.SEED_COMMENTS_PER_CARD, 10) || 2;
-  const password = process.env.SEED_PASSWORD || 'password123';
+  const password = process.env.SEED_PASSWORD || DEFAULT_PASSWORD;
 
   const ts = now();
 
