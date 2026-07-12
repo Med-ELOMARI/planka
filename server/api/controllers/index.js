@@ -14,6 +14,7 @@ module.exports = {
   fn() {
     return {
       basePath: sails.config.custom.baseUrlPath,
+      serverUrl: sails.config.custom.baseUrl,
     };
   },
 };
